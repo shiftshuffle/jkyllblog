@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "Analyse Harmonique"
+date:   2016-06-20 09:11:03
+description: Analyse Harmonique sur des groupes finis
+thumbnail: land.jpg
+categories: [math]
+comments: true
+author: Shift Shuffle
+---
+
+# Analyse Harmonique
+Dans cet article nous allons essayer de montrer les propriétés les plus importantes par rapport a la transformée de fourier sur les groupes abéliens finis et leur application a la théorie des nombres.
+
+
+
+# Caractère d'un groupe abélien fini
+
+Dans la suite $G$ est une groupe abélien fini noté additivement. ($\text{ordre } n$)
+
+
+Un caractère d'un groupe est une homomorphisme $\chi$ : $G$ $\longrightarrow$ ${\mathbb C}^*$
+
+${\mathbb C}^*$ est le groupe multiplicatif des nombres complexes non nuls.
+
+Alors on a $\chi(0) = 1$ et $\chi(a+b) = \chi(a)\cdot\chi(b)$, pour tout $a,b \in G$
+
+On a aussi $\chi(a)^n = \chi(a\cdot n) = \chi(0) = 1$, pour tout $a\in G$ et pour tout caractère $\chi$ , ainsi, chaque caractère complexe de $G$ est un homomorphisme dans le groupe multiplicatif cyclique () des racines de l'unité.
+
+Dans l'ensemble $\widehat{G}$ des caractères de $G$ on définit la multiplication par:
+$(\chi \circ \chi^\prime)(a) = \chi(a) \cdot \chi^\prime(a)$  $\hspace{2mm}$ pour tout $a \in G$.
+
+$\widehat{G}$ est un groupe abélien multiplicatif, ayant pour élément neutre le *caractère unité* $\chi_0$ tant défini par $\chi_0 = 1$ pour tout $a \in G$
+
+L'inverse de $\chi$ est  $\chi^{-1}$, défini par $\chi^{-1}(a) = \chi(a)^{-1}$,
+le *caractère conjugué* $\overline{\chi}$ est défini par $\overline{\chi}(a) = \overline{\chi(a)}$. Il est donc égal a l'inverse de $\chi$. (L'inverse d'un nombre complexe $\alpha $ est $\frac{\overline{\alpha}}{\| \alpha \|  } $, mais si $\alpha$ est une racine de l'unité $\| \alpha \|=1$ donc $\alpha^{-1} = \overline{\alpha} $ )
+
+
+
+
+# Relations d'orthogonalité des caractères
+<br>
+
+<div>$\sum\limits_{a\in G} \chi_i(a) =  $ $\begin{cases}
+n, & \text{lorsque }\chi_i=\chi_0 \\
+0, & \text{lorsque }\chi_i\neq\chi_0
+\end{cases}$</div>
+
+<br>
+<br>
+
+
+<div>$\sum\limits_{a\in G} \chi_i(a)\overline{\chi_j(a)} = $ $\begin{cases}
+n, & \text{lorsque }\chi_i=\chi_j \\
+0, & \text{lorsque }\chi_i\neq\chi_j
+\end{cases}$</div>
+
+<br>
+<br>
+
+
+<div>$\sum\limits_{\chi\in\widehat{G}} \chi(a) = $ $\begin{cases}
+n, & \text{lorsque }a=0 \\
+0, & \text{lorsque }a\neq0
+\end{cases}$</div>
+
+<br>
+<br>
+
+
+<div>$\sum\limits_{\chi\in\widehat{G}} \chi(a)\overline{\chi(b)} = $ $\begin{cases}
+n, & \text{lorsque }a=b \\
+0, & \text{lorsque }a\neq b
+\end{cases}$</div>
+
+<br>
+## Démonstration :
+
+$\sum\limits_{a\in G} \chi_0(a) = \vert  G\vert  = n$
+
+
+Si $\chi_i = \chi_0$ alors
+
+$\sum\limits_{a\in G} \chi_0(a) = \vert  G\vert  = n$.
+
+Si $\chi_i\neq\chi_0$ alors soit $b\in G$ tel que
+$\chi_i(b)\neq 1$.
+
+On a donc
+
+<div>$\chi_i(b)\cdot(\sum\limits_{a\in G} \chi_i(a)) = \sum\limits_{a\in G} \chi_i(a)\chi_i(b) = \sum\limits_{a\in G} \chi_i(a+b) = \sum\limits_{a\in G} \chi_i(a)$</div>
+
+Et ainsi $\sum\limits_{a\in G} \chi_i(a) = 0$
+
+En prenant $\chi_i\overline{\chi_j}$
+
+la relation précédent donne $\sum\limits_{a\in G} \chi_i(a)\overline{\chi_j(a)}$
+
+----------------
+
+(à suivre...)

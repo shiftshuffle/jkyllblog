@@ -1,0 +1,268 @@
+---
+layout: post
+title:  "Genetic Algorithm"
+date:   2017-03-03 09:11:03
+description:
+thumbnail: 20110202-mimi-protein.jpg
+categories: [code]
+comments: true
+# Information for the author block
+author: Shift Shuffle
+---
+
+<div tabindex="-1" id="notebook" class="border-box-sizing">
+  <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+  <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> dna</span>
+  <span class="n">genes</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="kt">Int16</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+  <span class="n">score</span><span class="p">::</span><span class="kt">Float64</span>
+  <span class="n">fitness</span><span class="p">::</span><span class="kt">Float64</span>
+<span class="k">end</span>
+
+
+<span class="n">target</span> <span class="o">=</span> <span class="s">&quot;To be, or not to be: that is the question&quot;</span>
+<span class="n">targetlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">target</span><span class="p">]</span>
+<span class="n">m</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="n">targetlist</span><span class="p">)</span>
+<span class="n">pn</span><span class="o">=</span><span class="mi">600</span>
+<span class="n">population</span><span class="o">=</span><span class="p">[</span><span class="n">dna</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">:</span><span class="mi">128</span><span class="p">,</span><span class="n">m</span><span class="p">),</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">pn</span><span class="p">]</span>
+<span class="n">mutationrate</span><span class="o">=</span><span class="mf">0.01</span>
+
+
+<span class="k">function</span><span class="nf"> fit</span><span class="p">(</span><span class="n">d</span><span class="p">::</span><span class="n">dna</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span>
+      <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">genes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">targetlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+          <span class="n">d</span><span class="o">.</span><span class="n">score</span><span class="o">+=</span><span class="mi">1</span>
+      <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+
+<span class="k">function</span><span class="nf"> cross</span><span class="p">(</span><span class="n">a</span><span class="p">::</span><span class="n">dna</span><span class="p">,</span><span class="n">b</span><span class="p">::</span><span class="n">dna</span><span class="p">)</span>
+  <span class="n">child</span><span class="o">=</span><span class="n">dna</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+  <span class="n">contribution</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span>
+      <span class="k">if</span> <span class="n">contribution</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span>
+          <span class="n">child</span><span class="o">.</span><span class="n">genes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">genes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+      <span class="k">else</span>
+          <span class="n">child</span><span class="o">.</span><span class="n">genes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">b</span><span class="o">.</span><span class="n">genes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+      <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">child</span>
+<span class="k">end</span>
+
+
+<span class="n">phenotype</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">join</span><span class="p">([</span><span class="n">char</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">x</span><span class="o">.</span><span class="n">genes</span><span class="p">],</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">k</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">150</span>
+  <span class="n">matingpool</span><span class="o">=</span><span class="n">dna</span><span class="p">[]</span>
+
+
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">population</span>
+      <span class="n">fit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+      <span class="n">i</span><span class="o">.</span><span class="n">fitness</span><span class="o">=</span><span class="n">i</span><span class="o">.</span><span class="n">score</span><span class="o">/</span><span class="n">length</span><span class="p">(</span><span class="n">targetlist</span><span class="p">)</span>
+  <span class="k">end</span>
+
+
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">pn</span>
+      <span class="n">n</span><span class="o">=</span><span class="n">int</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fitness</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+          <span class="n">push!</span><span class="p">(</span><span class="n">matingpool</span><span class="p">,</span><span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+      <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="c"># f=[i.score for i in population]</span>
+  <span class="c"># normalized=[i/sum(f) for i in f]</span>
+  <span class="c"># fitn=[i.fitness for i in population]</span>
+  <span class="c"># println(phenotype(population[indmax(normalized)]))</span>
+  <span class="c"># println(phenotype(population[indmax(fitn)]))</span>
+
+
+  <span class="n">fitn</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">fitness</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">population</span><span class="p">]</span>
+  <span class="n">println</span><span class="p">(</span><span class="n">phenotype</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">indmax</span><span class="p">(</span><span class="n">fitn</span><span class="p">)]))</span>
+
+  <span class="c">#println(length(matingpool))</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">pn</span>
+      <span class="n">daddy</span><span class="o">=</span><span class="n">matingpool</span><span class="p">[</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">matingpool</span><span class="p">))]</span>
+      <span class="n">mommy</span><span class="o">=</span><span class="n">matingpool</span><span class="p">[</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">matingpool</span><span class="p">))]</span>
+      <span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cross</span><span class="p">(</span><span class="n">daddy</span><span class="p">,</span><span class="n">mommy</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>*XUb#(JL xYEtpV4)Zm&amp;gI~:% 5r(Q/}Qq?{7K[7
+J.1)F84o1Sjt/ C2zbn8oX,VC\iozpW.bk|6^b&#34;oj
+N^M)j&gt;O%r/Ioa ;2lbWBo`Yam+lsPN?.N565uL[C&#34;
+V` )F8eo^S%t]^Hozb Ko&gt;,PL\iLeGCteq)FNICoj
+do|btV(om %59twMXke+ntX6iUir\sO}0q8e7%b,p
+1Gsa-I kK)-=t So\Met ^v:u_Zs 9tz PuF&#39;c&gt;J]
+kR\24, Qj  oPEwm&#39;8m[-Hk:?2ig tt! qudtf=N
+)xUb&#39;,Zo  2ot C&lt;D0ey=t,a]+isvt/#P2gb{t4a(
+O&#34;VE#)Qor&#39;*ot H;Gbe6g^/(z is cW.az4psK,$
+oo pJ, Q&lt;SfjnztozbWmg#Ha$ 4sRthX.qfcuI)op
+go:c.J ~  %o1 tDxyIqnK_E i;mc&#39;x 2ueution
+goÂ€bPpqo9 %Tt Sml0e45ZXa^ iK t.t puP%&#34;i+n
+N&#34;:!e, orE#o1Qt)6bezgYba% is 0(.azuguK]n
+#o:!.e or Iot1H;x0e45txVE is tTt p4rsbtop
+#o:!7e or Iot1t;dbea=ii_E is tLt zWrNbtok
+lo b0,~oj Io~ tozbe:P;raJli$&#34;jhÂ€ queNaiN
+*o_b0,~or Io~ tozMe:$;KamAij&#34;jhÂ€ q6eNciTn
+YoLbF&amp; o  Iot RR/0ej Y0at isvc{paque%t4)n
+To b&lt;Y &#39;rAnNt SoV|ntotHa$ is thÂ€lqu5]tiT&#39;
+7.|bI, or Not to\Me:gtKa,iiszthF queNtXyt
+NoLbF&amp;q[K not &gt;o.be&amp;Jtha7li;\thx c|estion
+No|bFYqoKAnWt Do 0egJthat iK chx questton
+ToLbF, or noK to tewgtKXE i]\Shx 2uestAot
+Yo b&#39;, oE notptn Zeh5tDat is tO) qu5IEqou
+Yo b&#39;, oEInot tn Z[h tDa]Ais th% quesEqon
+nh b$, -r fNt to+se&amp;rtbaO is jhF quesJio[
+Yohbe, -R nNg to cexeth$4 is t(e qub`;ion
+To be, or %otpto |&amp;he/,at is Z{r (ue tion
+`oVb*D or %ot h{zbe:Ktha]+is(thz qu3Ttion
+)o|bw,J-r Iot to beN&#39;tha4kis j(E que%Vion
+)o [&lt;+ or not to pex th5t is jhe que]ciÂ€d
+)o be) on not toxbexrthat is jh&lt; quesciÂ€s
+To6b&lt;, oG not toSWeBKtDat is thz queTt!yn
+do bI, -; not 7o ye:etxatYis tte-questios
+to b#i on notOto 8eN&#39;that iK j(k que7tion
+7o bd6 or not toGpeBgthaC is jhÂ€ qu=stiqn
+go &#34;V,4or non Lo kegethat is thx que%tion
+\o bV, or&lt;not toGpeD taC is jh&#39; question
+OoebV{ o, not xo :e:Kthat is GheIquestion
+OoebV{ 1Ynot to bn:Kthat is theIquestion
+go b/, or not to We35that is t(#+quetaion
+To b/V or Bot to b[N tat iJ t(6dquestion
+OoMbIt oE not to\be3gthat8is phe question
+[o be, or5-ot to bem&#39;that i% thtdquestion
+T[hb&lt;, oG not to beCgthat iz tz6 question
+To b*E or Eot to be:KtKatUis th# qu]stiop
+To bex -r Eot to begrtKat is thr question
+Yo bI{ or not to me:&#39;thaz8is Ghe questio&#34;
+To6b/, o; not to bexrt,at is thr que%tion
+=o b*{ -r not toGbex that is 1he q6estion
+o b#t or not to 8ex thaC is thÂ€ question
+TosbtF or not to be2gt/at is the que%tion
+To b/,Er not to Zeg th_t is the questijn
+To be, or not to bAC&#39;thSu 6s the question
+ho be, or not to beCrthat is the+question
+To be, oj not Vo ye2 that isnthe+question
+To be) oj not to be2gthat is /he que%tion
+To bIx or not to betrthat is thb questXon
+To b#6 or not toGbe3 t,at is the-question
+Yo btx or not to yetKthat is thÂ€ question
+do bei or n=t tozbe:rthat is Nhelquestion
+To [e, om not to beB&#39;that is thÂ€Qquestion
+do be, or n=t to+be:gthat is tLt question
+To b#, or E=t to beg$that is the question
+To beI or not to beBrthat it the question
+To bei or Eot toxbe2 that is the questXon
+To be, oK not to be:gthat is the-q6estion
+To b76 orenot to weC$that is the question
+To b*` or not t7 beBbthat is the question
+To b*x or not to be35that is the question
+To bF, or not to WeC&#39;that is the question
+To b/, or not to be3&#39;that is thr question
+To bF, or not to bex5that is th6 question
+To be, or no- toGbe3 t,at is the question
+To be, or not toxbet that i( thÂ€ question
+To b/, or not to be2 t0at is thr question
+To beI or not to beB that is thp questiCn
+To be, or not toxbetrtXat is the question
+To be, orAnot to beC that is the question
+To be, or not to bew5that=is 1he question
+To be, or not Lo be:gthat is the question
+To be` or not to be: that i; the question
+To be6 or not to We:rthat is the question
+To be, or not t* be: that ir the question
+To be, or not to beB5that is the question
+To be, or no- to be: that is the question
+To b/, or not to beg that is the question
+To be, or not to bew that is the question
+To be, or not to be:$that is the question
+To bt, or not to be4 that is the question
+To be, or not to be:&#39;that is the question
+To b/, or not to be35that is the question
+To be, or not to be: that is the question
+To be, or not to be:rthat is the question
+To be, or not Lo be: that is the question
+To be, or not to beB that is the question
+To be, or not to beB that is the question
+To be, or no2 to be: that is the question
+To b/, or not to be: that is the question
+To be, or not toxbe: that is the question
+To b/, or not to be: that is the question
+ToMbe, or not to be: that is the question
+To be, or not to be: that is t(e question
+To be, or not to be: that is the quettion
+To be, or not to beg that is the question
+To be, or not to be3 that is the question
+To be, or not to We: that is the queTtion
+To be, or not to be: that is the question
+To be, or not to be:&#39;that is the question
+To be, or not to be:rthat is the question
+To be, or not to be: t0at is the question
+To be, or not to be: that is the question
+To bet or not to be: that is the question
+To be, or not to bex that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the questiop
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be:rthat is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To b#, or not to be: that is the question
+To be, or not to be: that is the question
+To b/, or not to be: that is the question
+To be, or not to be:5that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+To be, or not to be: that is the question
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+  </div>
+</div>

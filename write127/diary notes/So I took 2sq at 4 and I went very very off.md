@@ -1,0 +1,17 @@
+# trippy day
+
+So I took 2sq at 4 and I went very very off, my family was in parras while I stayed in my mom's house.
+I had a trail running race sunday so I had to go get my location chip and shirt, it started very light but I was nervous really, then I just put music I did a lil exercise and then it kicked in. I tried calling Mom and Dad before taking it to know there wasn't anything to worry, but then I tried to call her and some weird message I got because she was in US and couldn't make the phonecall there I realized I was not thinking normal I imagined it was a day that all was about to end, migration was harder than any day and that was why US didn't want to exchange calls across country, I imagined water was so scarce that was why the birds where afraid of me, maybe I would have to eat blood for liquids, I wondered my possibilities out of my home I calculated how much gas was there on the van (camioneta).
+I wondered where was everyone and I imagined my uncle in helicopter (they went to Alaska) so I wondered ways to travel and where, I remembered travel space I was thinking in energy sources, go nuclear but then I saw the plants in my yard they where not running for resources, maybe they are indeed more advanced than us in being individuals and community beings. I wondered about the sun, everyone is thinking solar energy. While I was there in front of my door opened some people passed I knew I must look weird but then who is weirder? I just wanted some fresh air and I keep telling myself that i had the right to do that, it was my father's property after all I remembered I felt I had to protect the little water I had. If someone wanted to take it.
+I put my shoes (no socks) because I knew maybe I had to take a long trip maybe I was a hunter and I had to know what to bring with me and where to go for getting more resources then it was hotter so I went to turn the air on I was excited to view that energy everyone was talking about in action it was about to give me some cool air... Great, electric church and grandfather get in here (my grandfather worked in cfe, electric federal comision)
+It was not a great thing I mean it was hot because I was not outside, I was trapped there so yeah I probably mocked that a little.
+
+Then I saw patterns like Mexican Aztec shit and I thought the ones who made the trip did that so I said like woah these guys have serious tech maybe I should listen the hidden message and I did the Aztec calendar (like 10 pesos coin) started to turn and thrm the mouth opened and I was given a spherical seed.
+I interpreted that like I was elected among few that could see the message to travel and do great stuff for mexico. I remembered monarc butterflies and how they travel long distances for getting the best in the addecuate time and place.
+
+I saw a guard in the park and when I saw it just for an instant my mind did a zoom in my imagination so I saw in great detail then I thought he was in the perfect possition to see if I went out but still difficult to see him. And I got a little paranoid maybe someone knew I was alone. And wanted something.
+
+Then I saw pictures of me when I was very very little and in the frames i remembered that there were figures smaller than the actual photo so they didn't all fit well and I thought maybe since those details already there was the point we (humans) are too many and there isn't so much room for everyone.
+
+
+Then a bird came and was afraid he saw me with his eye and flew 

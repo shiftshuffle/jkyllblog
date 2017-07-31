@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "Domino and Graphs"
+date:   2016-01-24 09:11:03
+description:
+thumbnail: baer.jpg
+categories: [math,code]
+comments: true
+author: Shift Shuffle
+---
+
+
+
+#### Abstract
+
+So this is the first writing of an experiment of mine, i want to share thoughts and insights i may encounter and i will try to explain them the best i can.
+
+In mathematics i percieve people are jealous about sharing knowledge, not all people of course, but that is the impression i'm left with.
+
+Sometimes the way in wich the knowledge is hidden its not at all explicit, it may be resources you are not allowed to read if you do not belong to certain group, it may lie embedded in words and intricate structures that are not very useful to the theory but only to confuse the newcomers
+
+it may be the tedious problems when trying to install a comfortable enviroment for coding ...
+
+and not everybody focus the attention to that, those problems remain in the air named as _implementation issues_
+
+
+#### Why the title?
+
+So this is an anecdote of what happened recently, i was wondering (_like always_) how often will the players in a domino game be able to continue to play until nobody has pieces left over (that means _having all the 28 pieces of domino in the table, following the rules of domino_)
+Was it even possible? it kept me thinking in the night before sleep (my biological time is all messed up), and suddenly i saw how to determine if it was possible or not, like a blured image, a path to follow but i left it there, i slept and in the morning i did what i knew would work.
+
+#### Graphs
+
+The idea that struck and i just followed in the morning was to use **_De Bruijn Graphs_** which i'm well acquainted due to my interest in Bioinformatics :), the amazing book and online course of **Dr.Pavel Pevzner** was my first contact to that field. (thanks ^^)
+
+**What it has to do with Bioinformatics?**, well in one example they have used this to genome assembly, this is a huge topic and i'm not be able to go deep into it (at least for now). if you want to read and know more about i find this article a good start [De Bruijn graphs to genome assembly](http://www.nature.com/nbt/journal/v29/n11/full/nbt.2023.html).
+
+<img src="http://www.nature.com/nrg/journal/v14/n5/images/nrg3433-f1.jpg" width="470">
+
+
+in simple words the problem with this (very simplified, excuse me if i mess up) is that the machines to read DNA sequences just read little chunks of it, what it has been proposed is in some way to assign these reads to nodes on a graph, if just assigned in the "normal" way then we would be searching for a Hamiltonian path and that would gives us the possible read.
+if instead we build the associated De Bruijn graph with those nodes, the problem reduces to find an Eulerian Cycle which is easier than solving a Hamiltonian path.
+
+i know its technical but if you want to learn this, it would make sense to you. i **Highly** recommend viewing this playlist of [genome sequencing](https://www.youtube.com/watch?v=vjB6nhOu3BY&index=1&list=PL_XJ5e24FaSE9U2aRrvLnZWeZbw30u3IH) by Pavel.
+
+<img src="http://www.nature.com/nbt/journal/v29/n11/images_article/nbt.2023-F3.gif" width="670">
+
+#### So... where's the domino dude?
+Here is why i like mathematics, you know how to do X thing and you wanna do Y thing... no problem just transform Y into a X-iest form and you're done.
+
+we just wanted to place all pieces of domino to see if it was even possible to have all 28 in the table (following the rules)
+
+If i imagine the numbers from 0 to 6 are just nodes in a graph, and a link between two nodes is a domino piece... then i all got to do is find an eulerian path
+
+i did find a very ordered one :), took a photo and posted this image, but i never explained what it meant, i just titled it K7 :)
+
+
+<img src="{{ site.url }}/assets/img/domino.jpg" width="570">
+
+but obviously i felt something was missing, it doesn't mean anything if you can't really see the K7 graph...
+here it is more visual :) i actually saw going first with the orange (with loops) , the blue and finally the green
+
+
+<img src="{{ site.url }}/assets/img/domgraph.jpg" width="370">
